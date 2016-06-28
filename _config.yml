@@ -1,6 +1,6 @@
 name: Kunals Blog
 ighlighter: true
-url: http://kunalkanojia.github.io
+url: https://kunalkanojia.github.io
 gems: [jekyll-paginate,  jekyll-gist]
 paginate: 8
 description: My views on programming
