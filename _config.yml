@@ -1,9 +1,9 @@
-name: White Paper
-highlighter: true
+name: Kunals Blog
+ighlighter: true
 url: http://kunalkanojia.github.io
 gems: [jekyll-paginate,  jekyll-gist]
 paginate: 8
-description:     Jekyll theme for Programmers
+description: My views on programming
 intro:
 logo:             logo.png
 disqus_shortname:
@@ -13,9 +13,9 @@ disqus_shortname:
 
 # Owner/author information
 owner:
-  name:           <your-name-here>
-  avatar:         <avatar-image-link>
-  email:          <your-email-address>
+  name:          Kunal Kanojia
+  avatar:
+  email:          kanojia.kunal@yahoo.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:
   github:
