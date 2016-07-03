@@ -2,7 +2,7 @@
 layout: post
 title:  "Event Sourcing with play framework and eventuate (Part 1 - The design)"
 date:   2016-06-28 10:20:30 +0800
-categories: play framework eventuate scala akka cqrs
+categories: play framework eventuate scala akka
 ---
 
 
