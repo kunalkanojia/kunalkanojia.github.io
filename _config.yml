@@ -3,13 +3,12 @@ ighlighter: true
 url: https://kunalkanojia.github.io
 gems: [jekyll-paginate,  jekyll-gist]
 paginate: 8
-description: My views on programming
+description: I can code
 intro:
 logo:             logo.png
 disqus_shortname:
-# url: http://gotchacode.com
-#Comment out url when working locally to resolve base urls correctly
-#url:
+
+markdown:    kramdown
 
 # Owner/author information
 owner:
