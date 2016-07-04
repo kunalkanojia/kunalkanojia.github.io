@@ -1,23 +1,64 @@
 ---
 layout: default
+article: true
 ---
-<h2>{{ page.title }}</h2>
-<p class="meta">{{ page.date | date_to_string }}</p>
 
-<div class="post">
-{{ content }}
+<header class="{% if page.dark %}dark{% else %}clean{% endif %}" style="background-image: url({% if page.image.url %}{{ page.image.url }}{% else %}{{ site.cover }}{% endif %}); height: 100%; {% if site.parallax != true %}background-attachment: scroll;{% endif %}" data-stellar-background-ratio="0.5" data-stellar-horizontal-offset="50">
+	{% if page.video %}
+		<video id="bg-video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0" data-stellar-ratio="0.5">
+		{% for format in page.video %}
+			<source src="{% for url in format limit:1 offset:1 %}{{ url }}{% endfor %}" type="video/{% for type in format limit:1 %}{{ type }}{% endfor %}">
+		{% endfor %}
+		</video>
+	{% endif %}
+	{% include top.html %}
+	<div id="post-info" data-stellar-ratio="0.7">
+		<h1>{{ page.title }}</h1>
+		{% if page.quote %}
+			<h2>{{ page.quote }}</h2>
+		{% endif %}
+		<a class="site-title" href="{{ site.url }}{{ site.baseurl }}"><div class="site-icon-small" style="background-image: url({{ site.icon }});"></div>{{ site.title }}</a>, in {{ page.date | date_to_long_string }}
+	</div>
+	{% if page.image.source %}
+	<div id="img-info" data-stellar-ratio="0.5">
+		<a href="{{ page.image.source }}" target="_blank" title="{% if page.video %}Vídeo{% else %}Image{% endif %} Source"><span class="genericon genericon-link"></span></a>
+	</div>
+	{% endif %}
+	<div id="nav-icon" style="bottom: 30px;" data-stellar-ratio="4">
+		<a class="scroll" data-speed="500" href="#article"><span class="genericon genericon-expand"></span></a>
+	</div>
+</header>
+<div id="middle">
+	<div id="article">
+		{{ content }}
+	</div>
+	{% if site.commentsystem %}{% if page.comments != false %}
+	<div id="comments">
+		{% include comments.html %}
+	</div>
+	{% endif %}{% endif %}
 </div>
-
-<div class="keep-in-touch">
-  <p>
-    {% if site.owner.twitter %}
-    Tweet me <a href="https://twitter.com/{{site.owner.twitter}}">@{{ site.owner.twitter }}</a> if you like this post.
-    {% endif %}
-  </p>
-</div>
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ site.owner.twitter }}" data-size="large" data-hashtags="gotchacode">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-{% if site.disqus_shortname %}
-{% include disqus_comments.html %}
+{% if page.next %}
+	{% capture footer_style %}{% if page.next.dark %}dark{% else %}clean{% endif %}{% endcapture %}
+	{% capture footer_image %}{% if page.next.image.url %}{{ site.baseurl }}{{ page.next.image.url }}{% else %}{{ site.cover }}{% endif %}{% endcapture %}
+	{% capture footer_message %}Read next{% endcapture %}
+	{% capture footer_url %}{{ site.baseurl }}{{ page.next.url }}{% endcapture %}
+	{% capture footer_title %}{{ page.next.title }}{% endcapture %}
+	{% capture footer_quote %}{{ page.next.quote }}{% endcapture %}
+{% else %}
+	{% for post in site.related_posts limit:1 %}
+		{% capture footer_style %}{% if post.dark %}dark{% else %}clean{% endif %}{% endcapture %}
+		{% capture footer_image %}{% if post.image.url %}{{ site.baseurl }}{{ post.image.url }}{% else %}{{ site.cover }}{% endif %}{% endcapture %}
+		{% capture footer_message %}Featured post{% endcapture %}
+		{% capture footer_url %}{{ site.baseurl }}{{ post.url }}{% endcapture %}
+		{% capture footer_title %}{{ post.title }}{% endcapture %}
+		{% capture footer_quote %}{{ post.quote }}{% endcapture %}
+	{% endfor %}
 {% endif %}
+{% unless footer_style %}
+	{% capture footer_style %}{% if page.dark %}dark{% else %}clean{% endif %}{% endcapture %}
+{% endunless %}
+<footer class="clean" style="background-image: url({{ site.cover }}); background-position: bottom; bottom: 0; z-index: 4; position: absolute; height: 60px; {% if site.parallax != true %}background-attachment: scroll;{% endif %}">
+	<p class="copyright">&copy;{{ site.time | date: "%Y" }}, <a href="{{ site.copyright.url }}" target="_blank">{{ site.copyright.author }}</a>. <a href="{{ site.copyright.type_url }}" target="_blank">{{ site.copyright.type_title }}</a>.</p>
+</footer>
+<script src="{{ site.baseurl }}/assets/js/smooth-scroll.js"></script>

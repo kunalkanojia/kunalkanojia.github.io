@@ -1,32 +1,58 @@
-name: Kunals Blog
-ighlighter: true
-url: https://kunalkanojia.github.io
-gems: [jekyll-paginate,  jekyll-gist]
-paginate: 8
-description: I can code
-intro:
-logo:             logo.png
-disqus_shortname:
+# Dependencies
+markdown:	kramdown
+# Permalinks
+permalink:	/blog/:title
 
-markdown:    kramdown
+# Setup
+title:            I can code
+tagline:          'blog'
+description:      'Kunals Blog.'
+url:              http://kunalkanojia.github.io
+baseurl:          
+commentsystem:    google
+disqus:
 
-# Owner/author information
-owner:
-  name:          Kunal Kanojia
-  avatar:
-  email:          kanojia.kunal@yahoo.com
-  # Social networking links used in footer. Update and remove as you like.
-  twitter:  _kkanojia
-  github:   kunalkanojia
-  stackexchange:
-  # For Google Authorship https://plus.google.com/authorship
-  google_plus:
+author:
+  name:           KK
+  url:            https://google.com/+KanojiaKunal
 
-# Analytics and webmaster tools stuff goes here
-google_analytics: UA-80108133-1
-google_verify:
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
+paginate:         5
 
-# Links to include in top navigation
-# For external links add external: true
+# Custom vars
+icon:             /assets/images/icon.png
+cover:            /assets/images/cover.jpg
+
+social:
+  - icon:         twitter
+    url:          https://twitter.com/_kkanojia
+    desc:         Follow me on twitter
+
+  - icon:         github
+    url:          https://github.com/kunalkanojia
+    desc:         Fork me on github
+
+  - icon:         googleplus-alt
+    url:          https://plus.google.com/u/0/102717505393623702811
+    desc:         Add me on google+
+
+menu:
+  - title:        Home
+    url:          /
+
+  - title:        About
+    url:          https://kunalkanojia.github.io/resumecard
+
+copyright:
+  author:         Kunal Kanojia
+  url:            http://kunalkanojia.github.io
+  type_title:     Some rights reserved
+
+parallax:         false
+
+# Google Analytics (add the UA Code, e.g.: UA-xxxxxxxx-1)
+google_analytics:  UA-80108133-1
+
+# Default Theme Color for Chrome on Android Lollipop (Use RGB ColorCode without `#`, e.g.: `db5945`)
+theme_color:       7E9576
+
+gems: [jekyll-paginate, jekyll-gist]
