@@ -8,7 +8,7 @@ title:            I can code
 tagline:          'blog'
 description:      'Kunals Blog.'
 url:              http://kunalkanojia.github.io
-baseurl:          http://kunalkanojia.github.io
+baseurl:
 commentsystem:    google
 disqus:
 
