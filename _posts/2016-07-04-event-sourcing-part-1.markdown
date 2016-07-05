@@ -124,6 +124,8 @@ This should also give you a good idea on how to test asynchronous apps written u
 
 - [http://martinfowler.com/eaaDev/EventSourcing.html](http://martinfowler.com/eaaDev/EventSourcing.html)
 
+- [Event Sourcing - Greg Young, Youtube](https://www.youtube.com/watch?v=8JKjvY4etTY)
+
 - [http://rbmhtechnology.github.io/eventuate/](http://rbmhtechnology.github.io/eventuate/)
 
 - [https://www.playframework.com/](https://www.playframework.com/)
