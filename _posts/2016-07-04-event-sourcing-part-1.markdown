@@ -10,7 +10,9 @@ Hi, in this series of post we'll create an event-sourced application from ground
 
 ### Event Sourcing
 
-What do we mean by event sourcing. This is how Martin Fowler defines it -
+What do we mean by event sourcing?
+ 
+This is how Martin Fowler defines it -
 <div class="message"> Event Sourcing ensures that all changes to application state are stored as a sequence of events. Not just can we query these events, we can also use the event log to reconstruct past states, and as a foundation to automatically adjust the state to cope with retroactive changes. </div>
 
 What are events?
@@ -26,7 +28,7 @@ This is very different from the CRUD model most of us are used to building. A lo
 
 > Eventuate is a toolkit for building applications composed of event-driven and event-sourced services that collaborate by exchanging events over shared event logs. Services can either be co-located on a single node or distributed up to global scale.
 
-Eventuate provides several abstractions for building event sourced application components.
+Eventuate provides several abstractions for building event sourced application components. We will be using two of those [EventSourcedView](http://rbmhtechnology.github.io/eventuate/reference/event-sourcing.html#event-sourced-views) and [EventSourcedActor](http://rbmhtechnology.github.io/eventuate/user-guide.html#event-sourced-actors).
 
 We will see how easy it is to implement asynchronous event-sourced app with Play and eventuate. We just need to implement our events and domains, persistence and replaying of events will be taken care by eventuate provided actors.
 
@@ -35,7 +37,7 @@ But what about Akka Persistence?
 Eventuate is very similar to akka persistence and I could have used it as well. Maybe in another post I'll change this to use AP and then compare it with eventuate implementation.
 For now read here how they compare here - [Martins Blog](http://krasserm.github.io/2015/05/25/akka-persistence-eventuate-comparison/)
 
-_Another good thing I would like to point out about eventuate is - Martin and his team is very helpful. Whenever we post some doubts or problems on eventuate gitter channel we always get quick response from Martin._
+_Another good thing I would like to point out about eventuate is - Martin and his team are very helpful. You will always see quick response from Martin to any questions or problems on the eventuate gitter channel._
 
 
 ### tl;dr
@@ -99,7 +101,7 @@ _UserActor_ :
 Extends from [EventSourcedActor](http://rbmhtechnology.github.io/eventuate/user-guide.html#event-sourced-actors). One per user in the system. Created when a user signs up. Persists user events to the event log.
 
 _TradeManager_ :
- Extends from [EventSourcedView](http://rbmhtechnology.github.io/eventuate/architecture.html#event-sourced-views). One per user in the system. Created when the user signs up from the UserActor Stores all trades in memory. Routes all trade create and update message to respective trade actor.
+ Extends from [EventSourcedView](http://rbmhtechnology.github.io/eventuate/architecture.html#event-sourced-views). One per user in the system. Created by the UserActor when user signs up. Stores all trades for a particular user in memory. Routes all trade create and update message to respective trade actor.
 
 _TradeActor_ :
 Extends from [EventSourcedActor](http://rbmhtechnology.github.io/eventuate/user-guide.html#event-sourced-actors). One per trade. Created by trade manager when trade create command is received. Receives all trade create and update commands from the TradeManager and persists to the event log.
@@ -110,7 +112,11 @@ Extends from [EventSourcedView](http://rbmhtechnology.github.io/eventuate/archit
 
 ### Whats Next
 
-We will follow TDD and start implementing application. This should also give you a good idea on how to test asynchronous apps written using akka.
+We will follow TDD and start implementing our application. 
+
+Terms above which you didn't understand will start making sense.
+
+This should also give you a good idea on how to test asynchronous apps written using akka.
 
 ### References
 
