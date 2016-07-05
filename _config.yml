@@ -7,14 +7,14 @@ permalink:	/blog/:title
 title:            I can code
 tagline:          'blog'
 description:      'Kunals Blog.'
-url:              http://kunalkanojia.github.io
+url:              https://kunalkanojia.github.io
 baseurl:
 commentsystem:    google
 disqus:
 
 author:
   name:           KK
-  url:            https://google.com/+KanojiaKunal
+  url:            https://plus.google.com/102717505393623702811
 
 paginate:         5
 
