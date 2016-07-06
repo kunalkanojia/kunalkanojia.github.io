@@ -19,7 +19,7 @@ What are events?
 
 Events are immutable facts that are only ever appended to an event log which allows for very high transaction rates and efficient replication. 
 
-Following the above definitions our application is going to store application state as a sequence of events. These events will be persisted in an event log (Level DB) and will be replayed on restart to recover application state. 
+Following the above definitions our application is going to store application state as a sequence of events. These events will be persisted in an event log ([Level DB](http://leveldb.org/)) and will be replayed on restart to recover application state. 
 
 This is very different from the CRUD model most of us are used to building. A lot has been spoken about the pros and cons of each of these models so I'll not go into that. I have shared some links in the end where you can read more.
 
