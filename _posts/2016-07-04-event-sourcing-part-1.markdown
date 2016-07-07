@@ -118,6 +118,8 @@ Terms above which you didn't understand will start making sense.
 
 This should also give you a good idea on how to test asynchronous apps written using akka.
 
+Read part 2 here - http://kunalkanojia.github.io/blog/persisting-events
+
 ### References
 
 - [http://codebetter.com/gregyoung/2010/02/20/why-use-event-sourcing/](http://codebetter.com/gregyoung/2010/02/20/why-use-event-sourcing/)
