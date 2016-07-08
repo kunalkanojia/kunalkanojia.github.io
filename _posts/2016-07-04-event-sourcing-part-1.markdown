@@ -107,7 +107,7 @@ _TradeActor_ :
 Extends from [EventSourcedActor](http://rbmhtechnology.github.io/eventuate/user-guide.html#event-sourced-actors). One per trade. Created by trade manager when trade create command is received. Receives all trade create and update commands from the TradeManager and persists to the event log.
 
 _TradeViewAggregateActor_ :
-Extends from [EventSourcedView](http://rbmhtechnology.github.io/eventuate/architecture.html#event-sourced-views). One per system. Created on application startup. Receives command from all trade actors irrespective of the user and sends message to connected Web Socket user actors.
+Extends from [EventSourcedView](http://rbmhtechnology.github.io/eventuate/architecture.html#event-sourced-views). One per system. Created on application startup. Receives all events from the event log handles only trade events and sends message to connected Web Socket user actors.
 
 
 ### Whats Next
@@ -118,7 +118,7 @@ Terms above which you didn't understand will start making sense.
 
 This should also give you a good idea on how to test asynchronous apps written using akka.
 
-Read part 2 here - http://kunalkanojia.github.io/blog/persisting-events
+Read part 2 here - [Persisting Events](http://kunalkanojia.github.io/blog/persisting-events)
 
 ### References
 
