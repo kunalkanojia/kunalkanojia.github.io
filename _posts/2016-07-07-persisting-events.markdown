@@ -130,6 +130,8 @@ All tests should pass after you have made the above change to the trade actor.
 
 That's it, with eventuate we have easily implemented the command and the query for our application.
 
+Next we will take a look at implementing websockets with Play.
+
 ## Reference
 
 [http://rbmhtechnology.github.io/eventuate/reference.html](http://rbmhtechnology.github.io/eventuate/reference.html)
