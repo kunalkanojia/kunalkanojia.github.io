@@ -43,7 +43,7 @@ The complete test case looks like below -
 
 Simple enough! One thing missing here is that we are not clearing the event log before each test run. I am leaving it out as a TODO but if you want to do it, you can write before method which deletes the leveldb directory.
 
-Now lets start implementing the trade actor.
+Now lets take a look at our trade actor implementation.
 
 Our trade actor class will extend from `EventSourcedActor`. 
 When implementing a EventSourcedActor we need to override two methods `onCommand` and `onEvent`.
@@ -51,17 +51,23 @@ We will maintain out current state in `tradeOpt` variable.
 
 There are three steps in Trade Actor when creating or updating a trade, 
  
- - `onCommand` handler will handle the create/update command and call `persist` with  the respective event.
+1. `onCommand` handler will handle the create/update command and call `persist` with  the respective event.
 
- - The `onEvent` handler is invoked on successful persist. This is where we will update our internal state.
+2. The `onEvent` handler is invoked on successful persist. This is where we will update our internal state.
 
- - After completion of `onEvent` the persist method calls the handler where we return success or failure message to the sender.
+3. After completion of `onEvent` the persist method calls the handler where we return success or failure message to the sender.
  
 <script src="https://gist.github.com/kunalkanojia/2da73648265f7697fe2af0d477b5e48d.js"></script>
 
 That's it. We are able to persist changes and maintain current state of our trade object now.
 
 On restart the `onEvent` handler is invoked in the same sequence as the events were received. So we will always have the same state even when the application restarts or actor crashes.
+
+Also, event handler and persist handler are called on a dispatcher thread of the actor. 
+
+They can therefore safely access internal actor state. In our case the `tradeOpt`
+
+The `sender()` reference of the original command sender is also preserved, so that a persist handler can reply to the initial command sender.
 
 
 ## Event-sourced View
@@ -86,9 +92,11 @@ So our Trade Manager actor will have to handle those four commands we mentioned 
 
 <script src="https://gist.github.com/kunalkanojia/a5531a1f09a362ea7b82876a168c2769.js"></script>
 
-The trade manager above is complete but it does not receive the `onEvent` calls from the `TradeActor`. Now we need the TradeActor to asynchronously send message to the manager on successful persist.
+The trade manager above is complete but it does not receive the `onEvent` calls from the `TradeActor`. 
 
-Eventuate has got that covered for us. 
+Now we need the TradeActor to asynchronously send message to the manager on successful persist.
+
+Eventuate has got that covered for us with event routing. 
 
 ## Event Routing 
 An event that is emitted by an event-sourced actor or processor can be routed to other event-sourced components if they share an Event log.
@@ -106,9 +114,13 @@ If you look at the definition of `persist` method its this -
 
 {% highlight scala %}
 
-final def persist[A](event: A, customDestinationAggregateIds: Set[String] = Set())(handler: Handler[A]): Unit
+final def persist[A](event: A,
+  customDestinationAggregateIds: Set[String] = Set()
+  )(handler: Handler[A]): Unit
       
 {% endhighlight %}
+
+Along with the event we can pass a set of aggregate ids who should receive the event on a successful persist.
 
 So we will pass managers aggregate Id to the persist method in TradeActor and our trade manager will start receiving the create and update events.
 
@@ -130,7 +142,10 @@ All tests should pass after you have made the above change to the trade actor.
 
 That's it, with eventuate we have easily implemented the command and the query for our application.
 
-Next we will take a look at implementing websockets with Play.
+
+## Whats Next
+
+Next we will take a look at more event collaboration with eventuate and implementing websockets with Play.
 
 ## Reference
 

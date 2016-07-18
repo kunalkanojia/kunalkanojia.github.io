@@ -6,23 +6,40 @@ comments: true
 ---
 
 
-Hi, in this series of post we'll create an event-sourced application from ground up. The application is going to be a over-simplified trade manager where a user can login, create trades and edit trades. In a way its our usual CRUD application with trade as our domain, but we will implement it using event sourcing. 
+Hi, in this series of post we'll create an event-sourced application from ground up. The application is going to be a over-simplified trade manager where a user can login, create trades and edit trades. 
+
+In a way its our usual CRUD application with trade as our domain. But we will implement it using CQRS and event sourcing and see how it differs from CRUD.
 
 ### Event Sourcing
-
-What do we mean by event sourcing?
  
-This is how Martin Fowler defines it -
-<div class="message"> Event Sourcing ensures that all changes to application state are stored as a sequence of events. Not just can we query these events, we can also use the event log to reconstruct past states, and as a foundation to automatically adjust the state to cope with retroactive changes. </div>
+> Event Sourcing ensures that all changes to application state are stored as a sequence of events. Not just can we query these events, we can also use the event log to reconstruct past states, and as a foundation to automatically adjust the state to cope with retroactive changes. - Martin Fowler
 
-What are events?
+What exactly is event sourcing?
 
-Events are immutable facts that are only ever appended to an event log which allows for very high transaction rates and efficient replication. 
+Event Sourcing is a pattern which defines an approach to handle operations on data that is driven by a sequence of events, each of which is recorded in an append-only store. 
 
-Following the above definitions our application is going to store application state as a sequence of events. These events will be persisted in an event log ([Level DB](http://leveldb.org/)) and will be replayed on restart to recover application state. 
+Application code sends a series of events that imperatively describe each action that has occurred on the data to the event store, where they are persisted. 
 
-This is very different from the CRUD model most of us are used to building. A lot has been spoken about the pros and cons of each of these models so I'll not go into that. I have shared some links in the end where you can read more.
+Each event represents a set of changes to the data.
+ 
+The events are persisted in an event store that acts as the source of truth or system of record. Since events are only ever appended to an event log, this allows for very high transaction rates and efficient replication. 
 
+Some benefits we get out of event sourcing are :
+
+  - Complete log of every state change ever
+  - Unmatched traceability and debugability
+  - Very good performance characteristics due to append only store
+  - No more mapping complex objects to tables
+
+Following the above definition our application is going to store trade states as a sequence of events. These events will be persisted in an event log ([Level DB](http://leveldb.org/)) and will be replayed on restart to recover application state. 
+
+Since I have spent most of my career in investment banking `Trade` is the simplest domain I can think of.
+
+In real world events on a typical back-office trade settlement systems would be like this - 
+
+{% include image.html url="/images/trade_events.png" style="text-align: center;" %}
+
+We are only going to look at trade create and update as events in our current implementation. This should be good enough to explain the concepts.
 
 ### Eventuate
 
@@ -30,18 +47,18 @@ This is very different from the CRUD model most of us are used to building. A lo
 
 Eventuate provides several abstractions for building event sourced application components. We will be using two of those [EventSourcedView](http://rbmhtechnology.github.io/eventuate/reference/event-sourcing.html#event-sourced-views) and [EventSourcedActor](http://rbmhtechnology.github.io/eventuate/user-guide.html#event-sourced-actors).
 
-We will see how easy it is to implement asynchronous event-sourced app with Play and eventuate. We just need to implement our events and domains, persistence and replaying of events will be taken care by eventuate provided actors.
+We will see how easy it is to implement asynchronous event-sourced app with eventuate. We just need to implement our events and domains. Persistence and replaying of events will be taken care by eventuate provided actors.
 
 But what about Akka Persistence?
 
-Eventuate is very similar to akka persistence and I could have used it as well. Maybe in another post I'll change this to use AP and then compare it with eventuate implementation.
+Eventuate is similar to akka persistence and I could have used it as well. Maybe in another post I'll change this to use AP and then compare it with eventuate implementation.
 For now read here how they compare here - [Martins Blog](http://krasserm.github.io/2015/05/25/akka-persistence-eventuate-comparison/)
 
-_Another good thing I would like to point out about eventuate is - Martin and his team are very helpful. You will always see quick response from Martin to any questions or problems on the eventuate gitter channel._
+_Another good thing I would like to point out about eventuate is - Martin and his team is very helpful. You will always see quick response from Martin to any questions or problems posted on the eventuate gitter channel._
 
 
 ### tl;dr
-If you are don't want to read more and dive straight into the code, then grab it here - [GitHub](https://github.com/kunalkanojia/react-play-eventsourcing )
+If you are don't want to read more and dive straight into the code, then grab it here - [GitHub Repo](https://github.com/kunalkanojia/react-play-eventsourcing )
 
 
 ### Architecture Overview 
@@ -107,7 +124,7 @@ _TradeActor_ :
 Extends from [EventSourcedActor](http://rbmhtechnology.github.io/eventuate/user-guide.html#event-sourced-actors). One per trade. Created by trade manager when trade create command is received. Receives all trade create and update commands from the TradeManager and persists to the event log.
 
 _TradeViewAggregateActor_ :
-Extends from [EventSourcedView](http://rbmhtechnology.github.io/eventuate/architecture.html#event-sourced-views). One per system. Created on application startup. Receives all events from the event log handles only trade events and sends message to connected Web Socket user actors.
+Extends from [EventSourcedView](http://rbmhtechnology.github.io/eventuate/architecture.html#event-sourced-views). One per system. Created on application startup. Receives all events from the event log handles only trade events and sends trade messages to connected Web Socket users.
 
 
 ### Whats Next
