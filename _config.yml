@@ -5,7 +5,7 @@ permalink:	/blog/:title
 
 # Setup
 title:            I can code
-tagline:          'blog'
+tagline:          'Blog'
 description:      'Kunals Blog.'
 url:              https://kunalkanojia.github.io
 baseurl:

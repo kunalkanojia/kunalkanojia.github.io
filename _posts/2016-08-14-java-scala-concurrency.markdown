@@ -73,7 +73,7 @@ The above program is almost half the size of what our java program looks like an
 
 Method `getWordCountForFiles` uses for comprehension. For-comprehensions can be used to register new callbacks (to post new things to do) when the future is completed, i.e., when the computation is finished.
  
-So it invokes `getFilesList` and once the result of `getFilesList` is available `processFiles` is invoke with the list of files. The result of `processFiles` is returned once it is available.
+So it invokes `getFilesList` first and once the result of `getFilesList` is available `processFiles` is invoke with the list of files. The result of `processFiles` is returned once it is available.
 
 The methods `getWordCount` and `processFiles` are exactly similar to our java implementation. Just that they are wrapped in a Future which saves me from writing all the executor service code.
 
