@@ -20,7 +20,7 @@ The program will essentially do the following things.
 2. Count words in all the files
 3. Return a Map of file name and total word count.
 
-### Java Implementation
+### Java Implementation #TODO [Use the new Java8 API]
 
 - Test
 
