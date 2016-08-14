@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "Java & Scala concurrency comparison"
-quote: Scala is easier than java come take a look. (More code snippets than fancy talk)
+quote: Scala is easier than java come take a look.
 comments: true
 ---
  
