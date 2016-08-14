@@ -84,7 +84,7 @@ Isn't this so much better than the Java implementation?
 ### Testing Async programs
 
 If you are happy with the scala code, you must be wondering how to write test cases for such async code.
-Don't worry the scala community has got you covered and its very easy. 
+Don't worry the scala has got you covered and its very easy. 
 
 We use scala test library. It has got `whenReady` construct which can be used like below to test the program we just wrote.
 
