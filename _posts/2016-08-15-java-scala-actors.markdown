@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "Concurrency with Actor Model"
-quote: Concurrency with Akka Actors using both scala and java.
+quote: Concurrency with Akka Actors using Scala, Java and Kotlin.
 comments: true
 ---
   
@@ -39,3 +39,13 @@ The program will essentially do the following things.
  - Implementaion
 
 <script src="https://gist.github.com/kunalkanojia/36bacddf2b4a947e215580b68c660878.js"></script>
+
+
+### Kotlin Implementation
+
+Kotlin is a new programming language from JetBrains.
+It fixes a lot of issues we have with java - [https://kotlinlang.org/docs/reference/comparison-to-java.html](https://kotlinlang.org/docs/reference/comparison-to-java.html)
+And I also meet a lot of people who are optimistic about kotlin adoption. So I gave it a try and this is how the code looks.
+Definitely better than java, I say.
+
+<script src="https://gist.github.com/kunalkanojia/198f6c063bd12621341827330e59171c.js"></script>
