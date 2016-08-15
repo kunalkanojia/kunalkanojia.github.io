@@ -28,15 +28,15 @@ Our solution is going to be simple. We will have two actors `WordCountMaster` an
 
 <b>WordCountMaster</b> : 
 
-It does two tasks creates worker actors and collates results from the workers. Once it has all the results it returns the collated result.<br> 
+It does two tasks creates worker actors and collates results from the workers.
 
-Accepts the following messages :
+It accepts the following messages :
 
 <em>StartCounting message: </em> Master actor receives this message and starts the task. It reads all files from the directory, creates the worker actors and tells each worker to start counting the words in each file.
 
 <em>WordCount message: </em> On receipt of WordCount message from each worker, the master collates the result and responds with the result to the  original sender.
 
-<em>WordCountWorker</em> : 
+<b>WordCountWorker</b> : 
 
 Works on individual files to count the number of words in the file. Starts the task on receiving <em>FileToCount</em> message.
 
