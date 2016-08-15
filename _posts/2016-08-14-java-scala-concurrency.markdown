@@ -42,7 +42,7 @@ Below code should be easy to understand and relate to for every java programmer.
 
 As of last year I would be happy with the above code. It has minimal boiler plate, I use some of the fancy Java 8 features and now its doing the tasks concurrently so performance is also good.
 
-But not today, Scala has spoilt me. I dont want to write so much code just to make it concurrent. 
+But not today, Scala has spoilt me. I don't want to write so much code just to make it concurrent. 
 
 
 ### Solution 3 - Scala Futures FTW!
@@ -70,10 +70,11 @@ Now lets see how we would implement this word count program in scala and how dif
 <script src="https://gist.github.com/kunalkanojia/1e4f0295bc2666ba9621106d022ec36e.js"></script>
 
 The above program is almost half the size of what our java program looks like and every method of it is async.
+Except for wrapping the login inside the future block, I did not write anything special. 
 
 Method `getWordCountForFiles` uses for comprehension. For-comprehensions can be used to register new callbacks (to post new things to do) when the future is completed, i.e., when the computation is finished.
  
-So it invokes `getFilesList` first and once the result of `getFilesList` is available `processFiles` is invoke with the list of files. The result of `processFiles` is returned once it is available.
+So it invokes `getFilesList` first and once the result of `getFilesList` is available `processFiles` is invoked with the list of files. The result of `processFiles` is returned once it is available.
 
 The methods `getWordCount` and `processFiles` are exactly similar to our java implementation. Just that they are wrapped in a Future which saves me from writing all the executor service code.
 
@@ -119,8 +120,9 @@ Both java and scala code with tests can be found here -
 
 > The Actor Model provides a higher level of abstraction for writing concurrent and distributed systems. It alleviates the developer from having to deal with explicit locking and thread management, making it easier to write correct concurrent and parallel systems.
 
-In my next post we will implement the same programs with the actor model using Akka and see how much easier concurrency can get.
-And we will do it in both java and scala.
+In my next post I have implemented the same program with the actor model using Akka and see how much easier concurrency can get.
+
+[Actor Model Solution](https://kunalkanojia.github.io/blog/java-scala-actors)
   
 
 
