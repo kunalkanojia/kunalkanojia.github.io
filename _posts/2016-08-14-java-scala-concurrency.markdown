@@ -70,7 +70,6 @@ Now lets see how we would implement this word count program in scala and how dif
 <script src="https://gist.github.com/kunalkanojia/1e4f0295bc2666ba9621106d022ec36e.js"></script>
 
 The above program is almost half the size of what our java program looks like and every method of it is async.
-Except for wrapping the login inside the future block, I did not write anything special. 
 
 Method `getWordCountForFiles` uses for comprehension. For-comprehensions can be used to register new callbacks (to post new things to do) when the future is completed, i.e., when the computation is finished.
  
@@ -91,7 +90,7 @@ We use scala test library. It has got `whenReady` construct which can be used li
 
 {% highlight scala %}
 class WordCountWithFutureSpec extends WordSpec with MustMatchers with ScalaFutures {
-
+  //Notice how readable tests are.
   "A word count helper" should {
 
     "return correct number of files and the word count" in {
