@@ -4,7 +4,7 @@ markdown:	kramdown
 permalink:	/blog/:title
 
 # Setup
-title:            I can code
+title:            I write code
 tagline:          'Blog'
 description:      'Kunals Blog.'
 url:              https://kunalkanojia.github.io
