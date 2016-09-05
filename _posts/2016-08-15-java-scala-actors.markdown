@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "Concurrency with Akka Actors"
-quote: Concurrency with Akka Actors using Scala, Java and Kotlin.
+quote: Implementing concurrent programs with Actor model in Java, Scala and Kotlin.
 comments: true
 ---
   
@@ -9,7 +9,11 @@ comments: true
 
 > The Actor Model provides a higher level of abstraction for writing concurrent and distributed systems. It alleviates the developer from having to deal with explicit locking and thread management, making it easier to write correct concurrent and parallel systems.
 
-Continuing from my last concurrency post we will try to solve the word counting problem using Actors. We will do the thing with java first, then the same thing with scala and bonus one with Kotlin.
+Continuing from my last concurrency post we will try to solve the word counting problem using Actors.
+
+I am assuming you know how akka actors work. So if you don't already know you can read more on [Akka](http://akka.io/).
+
+I will try and solve the problem in three languages, Java, Scala and Kotlin and we will see how different the code looks. And which one we like the most.
 
 ### Problem Statement - Word Counting
 
@@ -21,8 +25,6 @@ The program will essentially do the following things.
 3. Return a Map of file name and total word count.
 
 ### Solution Strategy
-
-We will be using [Akka](http://akka.io/).
 
 Our solution is going to be simple. We will have two actors `WordCountMaster` and `WordCountWorker`.
 
