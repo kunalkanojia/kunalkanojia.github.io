@@ -51,8 +51,9 @@ We will see how easy it is to implement asynchronous event-sourced app with even
 
 But what about Akka Persistence?
 
-Eventuate is similar to akka persistence and I could have used it as well. Maybe in another post I'll change this to use AP and then compare it with eventuate implementation.
-For now read here how they compare here - [Martins Blog](http://krasserm.github.io/2015/05/25/akka-persistence-eventuate-comparison/)
+Eventuate is similar to akka persistence and I could have used it as well.
+Read this post to see comparison - [Martins Blog](http://krasserm.github.io/2015/05/25/akka-persistence-eventuate-comparison/)
+To jump to akka persistence example go here - [akka-persistence-sample](https://github.com/kunalkanojia/akka-persitence-sample). It uses the same model and architecture defined in this post.
 
 _Another good thing I would like to point out about eventuate is - Martin and his team is very helpful. You will always see quick response from Martin to any questions or problems posted on the eventuate gitter channel._
 
