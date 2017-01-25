@@ -156,6 +156,21 @@ jshell> double area(double radius){
 {% endhighlight %}
 
 
+### JavaDOC
+
+Pressing shift tab will get you the javadoc
+
+{% highlight bash %}
+jshell> java.nio.file.Paths
+java.nio.file.Paths
+<press shift-tab again to see javadoc>
+
+jshell> java.nio.file.Paths
+java.nio.file.Paths
+This class consists exclusively of static methods that return a Path by
+converting a path string or URI .
+{% endhighlight %}
+
 ### Conclusion
 The repl is definitely something which I think people will find useful.
 
