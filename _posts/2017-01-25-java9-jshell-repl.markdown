@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "jshell - The java REPL "
-quote: Trying out the new and shiny java read eval print loop.
+quote: Checkout features in the new java REPL(read eval print loop).
 comments: true
 ---
 
